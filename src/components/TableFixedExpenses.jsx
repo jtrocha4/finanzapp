@@ -1,21 +1,28 @@
 import React from 'react'
 
-const TableFixedExpenses = () => {
+const TableFixedExpenses = ({ tableName, expenses }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Descripcion</th>
-          <th>Valor</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Transporte</td>
-          <td>$100</td>
-        </tr>
-      </tbody>
-    </table>
+    <>
+      <h3>{tableName}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Descripcion</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+          expenses.map(({ key, description, value }) => (
+            <tr key={key}>
+              <td>{description}</td>
+              <td>{value}</td>
+            </tr>
+          ))
+        }
+        </tbody>
+      </table>
+    </>
   )
 }
 
