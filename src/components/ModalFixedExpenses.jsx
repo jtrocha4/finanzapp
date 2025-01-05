@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-const ModalFixedExpenses = () => {
-  const [expenses, setExpenses] = useState('')
+const ModalFixedExpenses = ({ setExpenses, expenses }) => {
   const [form, setForm] = useState({
     description: '',
     value: ''
@@ -39,7 +38,7 @@ const ModalFixedExpenses = () => {
         </div>
         <div>
           <label htmlFor='value'>Valor</label>
-          <input type='text' name='value' id='value' onChange={handleOnChange} value={form.value} />
+          <input type='number' name='value' id='value' onChange={handleOnChange} value={form.value} />
         </div>
         <div>
           <button onClick={addExpensive}>Añadir</button>
