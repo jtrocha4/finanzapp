@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ModalFixedExpenses from './ModalFixedExpenses'
+import { ExpensesContext } from '../contexts/ExpensesContext'
 
-const TableFixedExpenses = ({ expenses, setExpenses }) => {
+const TableFixedExpenses = ({ expenses, setExpenses, salary, netSalary, setNetSalary }) => {
   const [edit, setEdit] = useState(false)
   const [expenseToEdit, setExpenseToEdit] = useState([])
-  const [total, setTotal] = useState(0)
+
+  const { totalFixedExpenses, setTotalFixedExpenses } = useContext(ExpensesContext)
 
   const deleteExpensive = (expenseId) => {
     const result = expenses.filter(({ id }) => id !== expenseId)
@@ -20,10 +22,8 @@ const TableFixedExpenses = ({ expenses, setExpenses }) => {
   const calculateExpenses = (expenses) => {
     let total = 0
     expenses.forEach(({ value }) => {
-      setTotal(total += Number(value))
+      setTotalFixedExpenses(total += Number(value))
     })
-
-    console.log(total)
   }
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const TableFixedExpenses = ({ expenses, setExpenses }) => {
             <td colSpan={2}>
               Total
             </td>
-            <td>{total}</td>
+            <td>{totalFixedExpenses}</td>
           </tr>
         </tbody>
       </table>
